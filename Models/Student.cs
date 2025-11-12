@@ -5,6 +5,7 @@ namespace Student.Models
 {
     public class StudentEntity
     {
+        [Key]
         public int StudentId { get; set; }
 
         [Required(ErrorMessage = "Please enter the student's first name."), StringLength(50, ErrorMessage = "First name cannot exceed 50 characters")]

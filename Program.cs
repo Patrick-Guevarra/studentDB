@@ -1,9 +1,13 @@
-using   Student.Data;
+using Microsoft.EntityFrameworkCore;
+using Student.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<StudentContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("StudentContext")));
 
 var app = builder.Build();
 
