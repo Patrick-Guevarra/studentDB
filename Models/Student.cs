@@ -13,6 +13,12 @@ namespace Student.Models
         [Required(ErrorMessage = "Please enter the student's last name."), StringLength(50, ErrorMessage = "Last name cannot exceed 50 characters")]
         public string LastName { get; set; } = string.Empty;
 
+        [Required(ErrorMessage = "Please enter the student's birthday."), DataType(DataType.Date)]
+        public DateTime Birthday { get; set; }
+
+        [Required(ErrorMessage = "Please enter the student's email."), EmailAddress]
+        public string Email { get; set; } = string.Empty;
+
         [Required(ErrorMessage = "Please enter the student's major."), StringLength(50, ErrorMessage = "Major cannot exceed 50 characters.")]
         public string Major { get; set; } = string.Empty;
 
