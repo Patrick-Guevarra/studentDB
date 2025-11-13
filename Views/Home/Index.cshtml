@@ -32,7 +32,7 @@
                 <td>@(s.EnrollmentDate.ToString("yyyy-MM-dd"))</td>
                 <td>
                     <a asp-controller="Student" asp-action="Edit" asp-route-id="@s.StudentId">Edit</a>
-                    <a asp-controller="Student" asp-action="Edit" asp-route-id="@s.StudentId">Delete</a>
+                    <a asp-controller="Student" asp-action="Delete" asp-route-id="@s.StudentId">Delete</a>
                 </td>
             </tr>
         }
