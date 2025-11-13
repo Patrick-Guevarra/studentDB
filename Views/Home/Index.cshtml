@@ -1,8 +1,40 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using Microsoft.AspNetCore.Builder.Extensions
+@model List<Student.Models.StudentEntity>
+@{
+    ViewData["Title"] = "Students";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="mb-2">
+    <a asp-controller="Student" asp-action="Add">Add New Student</a>
 </div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Birthday</th>
+            <th>Email</th>
+            <th>Major</th>
+            <th>GPA</th>
+            <th>Enrolled</th> 
+            <th></th>       
+        </tr>    
+    </thead>
+    <tbody>
+        @foreach (var s in Model)
+        {
+            <tr>
+                <td>@s.FullName</td>
+                <td>@(s.Birthday.ToString("yyyy-MM-dd"))</td>
+                <td>@s.Email</td>
+                <td>@s.Major</td>
+                <td>@(s.GPA?.ToString("0.00"))</td>
+                <td>@(s.EnrollmentDate.ToString("yyyy-MM-dd"))</td>
+                <td>
+                    <a asp-controller="Student" asp-action="Edit" asp-route-id="@s.StudentId">Edit</a>
+                    <a asp-controller="Student" asp-action="Edit" asp-route-id="@s.StudentId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

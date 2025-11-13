@@ -1,21 +1,22 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Student.Models;
+using Student.Data;
 
 namespace Student.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private StudentContext context { get; set; }
 
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
-
+    public HomeController(StudentContext ctx) =>
+        context = ctx;
+    
     public IActionResult Index()
     {
-        return View();
+        // sorts students by last name, then first name if two have the same last name
+        var students = context.Students.OrderBy(s => s.LastName).ThenBy(s=> s.FirstName).ToList();
+        return View(students);
     }
 
     public IActionResult Privacy()
